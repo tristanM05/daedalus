@@ -1,0 +1,34 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello AdminInfoController!{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1>Gestion du message d'accueil</h1>
+        {% if info != null %}
+            <div id="messageOk">
+            {% for i in info %}
+                <div class="card text-white">
+                    <div class="card-header">{{i.title}}</div>
+                    <div class="card-body">
+                        {{i.text}}
+                    </div>
+                    <div class="card-footer d-flex">
+                        <form method="POST" style="display:inline-block" action="{{path('deleteInfo',{'id':i.id})}}" onsubmit="return confirm('Confirmer la suppression)">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ i.id)}}">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </form>
+                        <a href="{{path('modifInfo', {id:i.id})}}" class="btn btnAdmin"><i class="fas fa-pen-alt"></i></a>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        {% else %}
+            <div class="messageInfo">
+                <p>Auncun message d'information enregistré pour le moment</p>
+                <a href="{{path('newInfo')}}" class="btn btnAdmin">Ajoutez un message</a>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

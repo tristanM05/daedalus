@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Daedalus - Réservation{% endblock %}
+
+{% block body %}
+    <div id="resa" class="container">
+        <h1>Réservation</h1>
+        <div class="d-flex">
+            <a href="https://bookeo.com/daedalusescapegameblois/buyvoucher" class="btn btnGame">Offrez un escape !</a>
+            <img src="images/1.png" class="charte" alt="" data-toggle="modal" data-target="#modalCharte">
+        </div>
+        <div class="bookeo">
+            <script type="text/javascript" src="https://bookeo.com/widget.js?a=42550EXJH3R15F117762A9"></script>
+        </div>
+    </div>
+    {% include "partials/_modalCharte.html.twig" %}
+{% endblock %}

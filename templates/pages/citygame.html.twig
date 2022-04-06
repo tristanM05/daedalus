@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Daedalus - En ville{% endblock %}
+
+{% block body %}
+<div class="" id="citygame">
+    <h1>Escape game dans la ville</h1>
+    <div class="infoCity container">
+        {% for i in info %}
+            <p>{{i.content|raw}}</p>
+        {% endfor %}
+    </div>
+    {% for c in city %}
+        <div class="backGame" style="background-image: url(/room/{{c.background}})">
+            <div class="container">
+                <p class="titleGame">{{c.title}}</p>
+                {% if c.video != null %}
+                    <div clas="videoCity">
+                        <iframe class="videoGame" src="{{c.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                {% endif %}
+                <p class="nbGame text-left">{{c.nbPlayer}} en simultané.</p>
+                <div class="contentGame">
+                    <p>{{c.content|raw}}</p>
+                </div>
+                {% if c.content2 != null %}
+                    <div class="contentGame">
+                        <p>{{c.content2|raw}}</p>
+                    </div>
+                {% endif %}
+                <a href="{{path('contact')}}" class="btn btnGame">Pour réserver, contactez-nous !</a>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion F.A.Q{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="">Gestion de la F.A.Q</h1>
+        <div class="card">
+            <div class="card-body text-white">
+                {{form_start(form)}}
+                <div>
+                    {{form_row(form.question)}}
+                </div>
+                <div>
+                    {{form_row(form.reponse)}}
+                </div>
+                <button type="submit" class="btn btnAdmin btn-block">Enregistrer</button>
+                {{form_end(form)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    
+tinymce.init({
+    selector: '#faq_reponse',
+    height: 400,
+    toolbar_mode: 'floating',
+    language: 'fr_FR',
+    toolbar: 'forecolor backcolor undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+
+});
+    </script>
+{% endblock %}

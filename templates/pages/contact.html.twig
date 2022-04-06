@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Daedalus - Contact{% endblock %}
+
+{% block body %}
+<div id="contact">
+    <div class="container" id="contact2">
+        <p id="titleContact2">Pour tout renseignement contactez-nous au <br> 09 84 48 31 71 – 06 33 44 70 32 ou par mail ci-dessous</p>
+        {% for message in app.flashes('success') %}
+            <div class="container alert alert-success text-center" id="alertInfo">
+                {{message}}
+            </div>
+        {% endfor %}
+        <div id="formContactCarte" class="row">
+            <div id="form" class="col-lg-6">
+                {{ form_start(form) }}
+                {{ form_row(form.lastname) }}
+                {{ form_row(form.firstname) }}
+                {{ form_row(form.society) }}
+                {{ form_row(form.phone) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.message) }}
+                <button type="submit" class="btn btn-block btnAction mt-2 ml-0">Envoyer</button>
+                {{ form_end(form) }}
+            </div>
+            <div id="carte" class="col-lg-6">
+                <img id="imgCarte" src="images/daedalus_plan.jpg" alt="">
+            </div>
+        </div>
+        <div id="rejoindre" class="row">
+            <div class="r1 col-lg-4">
+                <p class="pR1">Pour nous rejoindre:</p>
+                <p>– A 5 min de la gare</p>
+                <p>– A 2 pas du centre ville et du château de Blois</p>
+                <p>– Tout près de l’arrêt de bus Monsabré</p>
+            </div>
+            <div class="r1 col-lg-4 d-flex ">
+                <img src="images/handicap.jpg" alt="">
+                <div class="divR1">
+                    <p>8 Ter rue de la Garenne 41000 Blois</p>
+                </div>
+            </div>
+            <div class="r1 col-lg-4 d-flex">
+                <img src="images/parking-3-1024x1024.png" alt="">
+                <div class="divR1">
+                    <p class="pR1">Pour vous garer :</p>
+                    <p>parking du château, <br> parking Monsabré.</p>
+                </div>
+            </div>
+        </div>
+        <div id="note">
+            <p>Les derniers commentaires laissés par nos joueurs:</p>
+            <iframe src="https://bookeo.com/daedalusescapegameblois/reviews?rows=1&columns=3" id="frameComment" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AlbumController!{% endblock %}
+
+{% block body %}
+<div class="container" id="allAlbum">
+    <h1>Album photos</h1>
+    <div class="albums">
+        {% for a in album %}
+            <div class="thisAlbum">
+                <img src="{{asset('album/' ~ a.photo.first.name)}}" alt="image-galerie" class="img-fluid mt-2 imgAlbum">
+                <div class="metaAlbum">
+                    <p class="metaTitle">{{a.title}}</p>
+                    <p class="metaDescription">{{a.description}}</p>
+                    <a href="{{path('album', {id:a.id})}}" class="btn btnAction">Voir plus</a>
+                </div>
+            </div>
+            <hr id="hrAlbum">
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

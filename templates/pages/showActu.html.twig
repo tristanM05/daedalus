@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}Daedalus - Actualités{% endblock %}
+{% block body %}
+    <div class="container" id="pageActu">
+        <h1>Nos Actualités</h1>
+        <div class="showActu mt-5">
+            <div class="actus">
+                <p class="titreActu">{{actu.title}}</p>
+                <img class="actuImg" src="/actu/{{actu.image}}" alt="">
+                <div class="content">
+                    <p class="contentActu">{{actu.content|raw}}</p>
+                </div>
+                {% if actu.link and actu.button != null %}
+                    <div class="btnActu">
+                        <a href="{{actu.link}}" target="blank" class="btn btnAction">{{actu.button}}</a>
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

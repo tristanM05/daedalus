@@ -1,0 +1,51 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion des jeux mobile{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="">Création d'un nouveau jeux</h1>
+        <div class="card">
+            <div class="card-body text-white">
+                {{form_start(form)}}
+                <div class="d-flex">
+                    <div class="mr-2">
+                        {{ form_row(form.title) }}
+                    </div>
+                    <div class="mr-2">
+                        {{ form_row(form.nbPlayer) }}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="mr-2">
+                        {{ form_row(form.image) }}
+                    </div>
+                    <div class="mr-2">
+                        {{ form_row(form.video) }}
+                    </div>
+                    <div>
+                        {{ form_row(form.background) }}
+                    </div>
+                </div>
+                <div>
+                    {{ form_row(form.message) }}
+                </div>
+                <button type="submit" class="btn btnAdmin btn-block">Enregistrer</button>
+                {{form_end(form)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    
+tinymce.init({
+    selector: '#mobile_message',
+    height: 350,
+    toolbar_mode: 'floating',
+    language: 'fr_FR',
+    toolbar: 'forecolor backcolor undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+
+});
+    </script>
+{% endblock %}

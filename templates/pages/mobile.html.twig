@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Deadalus - Escape mobile{% endblock %}
+
+{% block body %}
+<div id="mobile">
+    <h1 id="mobileH1">Nos escape game a domicile</h1>
+    <h2 id="mobileH2">L'escape game qui s'invite chez vous !</h2>
+</div>
+<div>
+    {% for m in mobile %}
+        <div class="mobileBack" style="background-image: url(/room/{{m.background}})">
+            <p class="mobileTitle">{{m.title}}</p>
+            <p class="mobileNb">{{m.nbPlayer}}</p>
+            <div>
+                <iframe class="videoGame" width="1060" height="515" src="{{m.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            <img src="/room/{{m.image}}" class="mobileImg" alt="">
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

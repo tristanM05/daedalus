@@ -1,0 +1,54 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion Commentaires{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Gestion des commentaires</h1>
+    {% for message in app.flashes('success') %}
+    <div class="container alert alert-success text-center" id="alertInfo">
+        {{message}}
+    </div>
+    {% endfor %}
+    <div class="card p-3">
+        <table class="table table-hover text-center">
+            <thead class="tableAdmin text-white">
+                <th>Nom</th>
+                <th>Ville</th>
+                <th>E-mail</th>
+                <th>Commentaire</th>
+                <th>Posté le</th>
+                <th>Action</th>
+            </thead>
+            {% for c in comment %}
+            <tbody class="text-white">
+                <td>{{c.name}}</td>
+                <td>{{c.ville}}</td>
+                <td>{{c.mail}}</td>
+                {% if c.message | length >= 30 %}
+                <td>{{c.message|slice(0,30)}}...</td>
+                {% else %}
+                <td>{{c.message}}</td>
+                {% endif %}
+                <td>{{c.createdAt|date("d/m/Y")}}</td>
+                <td>
+                    <a href="{{path('viewComment', {id: c.id})}}" class="btn btnAdmin"><i class="fas fa-eye"></i></a>
+                    {% if c.isOk != 1 %}
+                    <a href="{{path('acceptComment', {'id': c.id})}}" class="btn btn-danger"><i
+                            class="fas fa-times"></i></a>
+                    {% else %}
+                    <a href="{{path('retireComment', {'id': c.id})}}" class="btn btnAdmin"><i class="fas fa-check"></i></a>
+                    {% endif %}
+                    <form method="POST" style="display:inline-block" action="{{path('delComment',{'id':c.id})}}"
+                        onsubmit="return confirm('Confirmer la suppression)">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ c.id)}}">
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    </form>
+                </td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

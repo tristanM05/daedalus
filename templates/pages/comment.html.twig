@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Daedalus - Livre d'or{% endblock %}
+
+{% block body %}
+<div id="comments">
+    <div class="container">
+        <h1>Laisser nous votre avis !</h1>
+        <div class="formComment card">
+            <div class="card-body">
+                {% for message in app.flashes('success') %}
+                <div class="container alert alert-success text-center" id="alertInfo">
+                    {{message}}
+                </div>
+                {% endfor %}
+                {{ form_start(form) }}
+                {{ form_row(form.name) }}
+                {{ form_row(form.ville) }}
+                {{ form_row(form.mail) }}
+                {{ form_row(form.message) }}
+                <button type="submit" class="btn btnGame mb-0 btn-block ml-0">Envoyez</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        {% for c in comments %}
+            <div class="card cardComment">
+                {% if c.ville != null %}  
+                    <div class="card-header cardTitle">{{c.name}} de {{c.ville}} le {{c.createdAt | date('d/m/Y')}}</div>
+                {% else %}
+                    <div class="card-header cardTitle">{{c.name}}</div>
+                {% endif %}
+                <div class="card-body messageComment">
+                    {{c.message}}
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

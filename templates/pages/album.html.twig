@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello AlbumController!{% endblock %}
+
+{% block body %}
+<div class="container" id="allAlbum">
+    <h1>Album photos</h1>
+    <div class="albums">
+        <div class="thisAlbum2">
+            <div class="metaAlbum">
+                <p class="metaTitle">{{album.title}}</p>
+                <p class="metaDescription">{{album.description}}</p>
+            </div>
+            <div class="row colAlbum">
+                {% for a in album.photo %}
+                <div class="col-lg-4 col-sm-12 p-0 pl-2" id="colAlbum2">
+                    <a href="{{asset('album/' ~ a.name)}}" data-lightbox="galerie"><img src="{{asset('album/' ~ a.name)}}" alt="" class="imgLight"></a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

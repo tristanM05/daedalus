@@ -1,0 +1,154 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Daedalus escape game{% endblock %}
+
+{% block body %}
+<div id="divLogo"></div>
+<div id="divInfo" class="pb-5">
+    <img src="images/1.png" class="charte" alt="" data-toggle="modal" data-target="#modalCharte">
+    {% if info != null %}   
+        <p class="titleHome">Informations importantes</p>
+        <hr class="hrHome">
+        {% for i in info %}  
+            <div id="info1" class="container">
+                <div id="info2">
+                    <p class="titleInfo">{{i.title}}</p>
+                    <p class="pInfo">
+                        {{i.text}}
+                    </p>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+    {% endif %}
+    {% if actus != null %}  
+        <p class="titleHome">News express</p>
+        <hr class="hrHome">
+        <div class="container">
+            <div class="btnNews">
+                <a href="{{path('allActu')}}" class="btn btnAction">Toutes nos news ici !</a>  
+            </div>
+            <div id="allActu" class="row">
+                {% for a in actus %}
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="actu">
+                            <p class="titleActu">{{a.title}}</p>
+                            <img class="imgActuHome" src="/actu/{{a.image}}" alt="">
+                            <a class="btn btnAction" href="{{path('actu', {id:a.id})}}">Voir plus</a>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+    {% endif %}
+</div>
+<div id="Presentation" class="container">
+    <h1 class="text-center text-white mt-5">Un jeu d’évasion grandeur nature c’est quoi ?</h1>
+    <div id="icone">
+        <div class="divIcone">
+            <img class="imgIcone" src="{{asset('images/Daedalus_picto_joueur.png')}}" alt="">
+            <p class="pIcone">Une équipe de 2 à 8 joueurs</p>
+        </div>
+        <div class="divIcone">
+            <img class="imgIcone" src="{{asset('images/Daedalus_picto_cadenas.png')}}" alt="">
+            <p class="pIcone">Une pièce dont il faut s’échapper</p>
+        </div>
+        <div class="divIcone">
+            <img class="imgIcone" src="{{asset('images/Daedalus_picto_engrenage.png')}}" alt="">
+            <p class="pIcone">Une série d’énigmes à résoudre</p>
+        </div>
+        <div class="divIcone">
+            <img class="imgIcone" src="{{asset('images/Daedalus_picto_sablier.png')}}" alt="">
+            <p class="pIcone">Un défi à relever en un temps imparti</p>
+        </div>
+    </div>
+    <p class="pHome">pour plus de détails regarder notre trailer !</p>
+    <div id="video">
+        <iframe src="https://www.youtube.com/embed/mnLBHM-d32k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+</div>
+<div id="daeda">
+    <div id="divDeada" class="container">
+        <p id="titleDaeda">Ce que vous réserve DAEDALUS…</p>
+        <div id="textDaeda">
+            <p id="pDaeda">
+                Vous recherchez une expérience nouvelle et unique à Blois ? Vous voulez vous amuser et faire travailler vos méninges ? Alors venez plonger dans l’univers Daedalus : la cohésion de votre équipe sera la clé pour vous échapper mais Daedalus aime jouer avec le temps et vous laisse 75 min pour accomplir votre mission. <br> <br>
+                Formez vos équipes entre amis, en famille, entre collègues.
+                Nos énigmes sont accessibles à partir de 16 ans (avant 16 ans, au moins un adulte doit être présent). <br> <br>
+                Pour tous vos événements privés (anniversaires, enterrements de vie de célibataire), mais aussi vos événements d’entreprise (team bulding, CE), contactez-nous pour une offre sur mesure.
+            </p>
+            <p id="numberDaeda"><span>75</span> minutes pour accomplir votre mission</p>
+        </div>
+    </div>
+</div>
+<div id="tarifs">
+    <p class="pHome pt-4">Nos tarifs varient selon les moments et le nombre de joueurs, de 18 à 32 € par personne</p>
+    <p id="tarifP1">
+        Attention :  Il est nécessaire d’effectuer une réservation 24h à l’avance afin de pouvoir profiter de nos rooms ! <br> Pour toute réservation de dernière minute, veuillez nous appelez.
+    </p>
+    <div class="container tableTarif">
+        <div class="imgTarif">
+            <img src="images/tarif1.png" alt="">
+        </div>
+        <div class="imgTarif">
+            <img src="images/tarif2.png" alt="">
+        </div>
+    </div>
+<div id="contact">
+    <div class="container">
+        <p id="titleContact">Pour tout renseignement contactez-nous au <br> 09 84 48 31 71 – 06 33 44 70 32 ou par mail ci-dessous</p>
+        <div id="formContactCarte" class="row">
+            <div id="form" class="col-lg-6">
+                {{ form_start(form) }}
+                {{ form_row(form.lastname) }}
+                {{ form_row(form.firstname) }}
+                {{ form_row(form.society) }}
+                {{ form_row(form.phone) }}
+                {{ form_row(form.email) }}
+                {{ form_row(form.message) }}
+                <button type="submit" class="btn btn-block btnAction mt-2 ml-0">Envoyer</button>
+                {{ form_end(form) }}
+            </div>
+            <div id="carte" class="col-lg-6">
+                <img id="imgCarte" src="images/daedalus_plan.jpg" alt="">
+            </div>
+        </div>
+        <div id="rejoindre" class="row">
+            <div class="r1 col-lg-4">
+                <p class="pR1">Pour nous rejoindre:</p>
+                <p>– A 5 min de la gare</p>
+                <p>– A 2 pas du centre ville et du château de Blois</p>
+                <p>– Tout près de l’arrêt de bus Monsabré</p>
+            </div>
+            <div class="r1 col-lg-4 d-flex ">
+                <img src="images/handicap.jpg" alt="">
+                <div class="divR1">
+                    <p>8 Ter rue de la Garenne 41000 Blois</p>
+                </div>
+            </div>
+            <div class="r1 col-lg-4 d-flex">
+                <img src="images/parking-3-1024x1024.png" alt="">
+                <div class="divR1">
+                    <p class="pR1">Pour vous garer :</p>
+                    <p>parking du château, <br> parking Monsabré.</p>
+                </div>
+            </div>
+        </div>
+        <div id="note">
+            <p>Les derniers commentaires laissés par nos joueurs:</p>
+            <iframe src="https://bookeo.com/daedalusescapegameblois/reviews?rows=1&columns=3" id="frameComment" frameborder="0"></iframe>
+        </div>
+    </div>
+</div>
+{% include "partials/_modalCharte.html.twig" %}
+{% endblock %}
+{% block javascripts %}
+    <script>
+        window.scrollTo({
+            behavior: 'smooth',
+            left: 0,
+            top: element.offsetTop - offset
+        })
+    </script>
+{% endblock %}

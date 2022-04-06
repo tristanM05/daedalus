@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Daedalus - {{thisRoom.title}}{% endblock %}
+
+{% block body %}
+    <div class="room" style="background-image: url(/room/{{thisRoom.background}})">
+        <div class="container">
+            <div class="gridRoom">
+                <div class="mediaRoom">
+                    {% if thisRoom.video != null %}   
+                        <div class="videoRoom">
+                            <iframe src="{{thisRoom.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    {% else %}
+                    {% endif %}
+                    {% if thisRoom.image != null %}
+                        <div class="imageRoom">
+                            <img src="/room/{{thisRoom.image}}" alt="">
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="txtRoom">
+                    <div>
+                        <h1>{{thisRoom.title}}</h1>
+                        <div class="d-flex">
+                            <p class="text-white">Difficulté:</p>
+                            <img class="difficulty" src="/difficulty/{{thisRoom.difficulty.name}}" alt="{{thisRoom.difficulty.name}}">
+                        </div>
+                        <div>
+                            <p class="text-white">{{thisRoom.nbPlayer}} - Durée: {{thisRoom.duration}} minutes</p>
+                        </div>
+                        <p class="roomMessage text-white">{{thisRoom.message|raw}}</p>
+                        <p class="roomContent">{{thisRoom.content|raw}}</p>
+                        {% if thisRoom.link and thisRoom.button != null %}
+                            <a href="{{thisRoom.link}}" class="btn btnGame">{{thisRoom.button}}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestions des actualités{% endblock %}
+
+{% block body %}
+<div id="allActu" class="container">
+    <h1>Gestion des actualités</h1>
+    {% for message in app.flashes('success') %}
+    <div class="container alert alert-success text-center" id="alertInfo">
+        {{message}}
+    </div>
+    {% endfor %}
+    <a href="{{path('newActu')}}" class="btn btnAdmin my-4">Ajouter une actualité</a>
+    <div class="card p-3">
+        <table class="table table-hover text-center">
+            <thead class="tableAdmin text-white text-center">
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Posté le</th>
+                <th>Action</th>
+            </thead>
+            {% for actu in actus %}
+            <tbody class="text-white">
+                <td>{{actu.title}}</td>
+                {% if actu.content | length >= 48 %}
+                <td>{{actu.content|raw|slice(0,48)}}...</td>
+                {% else %}
+                <td>{{actu.content|raw}}</td>
+                {% endif %}
+                <td>{{actu.createdAt|date('d/m/Y')}}</td>
+                <td>
+                    {% if actu.isSelect != 1 %}
+                    <a href="{{path('acceptActu', {'id': actu.id})}}" class="btn btn-danger"><i
+                            class="fas fa-times"></i></a>
+                    {% else %}
+                    <a href="{{path('retireActu', {'id': actu.id})}}" class="btn btnAdmin"><i
+                            class="fas fa-check"></i></a>
+                    {% endif %}
+                    <a href="{{path('editActu', {id:actu.id})}}" class="btn btnAdmin"><i class="fas fa-eye"></i></a>
+                    <form method="POST" style="display:inline-block" action="{{path('delActu',{'id':actu.id})}}"
+                        onsubmit="return confirm('Confirmer la suppression)">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ actu.id)}}">
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    </form>
+                </td>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

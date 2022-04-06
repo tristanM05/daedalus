@@ -1,0 +1,110 @@
+
+@font-face {
+    font-family: "stencilia";
+    src: url(../font/Stencilia-A.ttf);
+}
+@font-face {
+    font-family: "stencilia2";
+    src: url(../font/Stencilia-Bold.ttf);
+}
+@font-face {
+    font-family: "avenir";
+    src: url(../font/Avenir\ Book.ttf);
+}
+.custom-file-label::after{
+    display: none !important;
+  }
+  
+body{
+    background-image: url(../images/daedalus_paralax-1024x490.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: avenir;
+    margin: 0;
+    padding: 0%;
+    width: 100%;
+}
+h1{
+    text-align: center;
+    color: white;
+    font-family: stencilia;
+    padding-top: 50px;
+    margin-bottom: 50px;
+}
+.btnAdmin{
+    background-color: #79659b;
+    color: white;
+}
+.card{
+    background-color: #82898af3;
+}
+/** NAVBAR **/
+.navHome{
+    background-color: #3b4142f3;
+    width: 100%;
+}
+#logoMenu{
+    width: 45%;
+    padding: 5px;
+    margin-left: 15px;
+}
+.dropM{
+    background-color: #3b4142f3;
+}
+.dropdown-item{
+    color: white;
+}
+.nav-link{
+    font-weight: 500;
+    font-size: 17px;
+}
+.nav-item{
+    margin-right: 20px;
+}
+/** NAVBAR **/
+/** FAQ **/
+
+/** FAQ **/
+/** INFO **/
+.messageInfo{
+    text-align: center;
+}
+#messageInfo p{
+    color: white;
+    font-size: 19px;
+}
+/** INFO **/
+/** ROOM **/
+.fileRoom{
+    width: 350px;
+}
+/** ROOM **/
+/** AMBUM **/
+.supImg {
+    background-color: rgba(161, 160, 160, 0.418);
+    width: 280px;
+    margin-bottom: 20px;
+}
+.supImg a {
+    color: red;
+}
+.adminImg {
+    width: 360px;
+    height: 250px;
+}
+.supImg {
+    background-color: rgba(161, 160, 160, 0.418);
+    width: 360px;
+    margin-bottom: 20px;
+}
+
+.imgI {
+    color: rgb(129, 9, 9);
+}
+
+.imgI:hover {
+    cursor: pointer;
+}
+/** AMBUM **/

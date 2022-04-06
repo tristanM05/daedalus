@@ -1,0 +1,46 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Admin - En ville{% endblock %}
+
+{% block body %}
+<div id="allRoom" class="container">
+    <h1>Gestion des escapes en ville</h1>
+    {% for message in app.flashes('success') %}
+    <div class="container alert alert-success text-center" id="alertInfo">
+        {{message}}
+    </div>
+    {% endfor %}
+    <div class="d-flex">
+        <a href="{{path('newCity')}}" class="btn btnAdmin my-4 mr-2">Ajouter un escape</a>
+        {% if info != null %}
+            {% for i in info %}    
+                <a href="{{path('editCityInfo', {id:i.id})}}" class="btn btnAdmin my-4">Modifier le message d'information</a>
+            {% endfor %}
+        {% else %}
+            <a href="{{path('newCityInfo')}}" class="btn btnAdmin my-4">Ajouter un message d'information</a>
+        {% endif %}
+    </div>
+    <div class="card p-3">
+        <table class="table table-hover text-center">
+            <thead class="tableAdmin text-white text-center">
+                <th>Nom</th>
+                <th>Action</th>
+            </thead>
+           {% for c in city %}
+                <tbody class="text-white">    
+                    <td>{{c.title}}</td>
+                    <td>
+                        <a href="{{path('editCity', {id:c.id})}}" class="btn btnAdmin"><i class="fas fa-eye"></i></a>
+                        <form method="POST" style="display:inline-block" action="{{path('delCity',{'id':c.id})}}"
+                            onsubmit="return confirm('Confirmer la suppression)">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ c.id)}}">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tbody>
+           {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

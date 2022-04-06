@@ -1,0 +1,17 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion Commentaires{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1>Commentaire de {{comment.name}}</h1>
+    <div class="card text-white">
+        <div class="card-header">
+            Contact: {{comment.mail}}
+        </div>
+        <div class="card-body">
+            {{comment.message}}
+        </div>
+    </div>
+</div>
+{% endblock %}

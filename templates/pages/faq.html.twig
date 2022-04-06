@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Daedalus - F.A.Q{% endblock %}
+
+{% block body %}
+<div id="faq">
+    <div class="container">
+        <h1>Foire Aux Questions</h1>
+        {% for f in faq %}
+            <div class="divFaq">
+                <p class="question">{{f.question}}</p>
+                <p class="reponse">{{f.reponse}}</p>  
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

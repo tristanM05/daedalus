@@ -1,0 +1,54 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion actualité{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="">Gestion des actualités</h1>
+        <div class="card">
+            <div class="card-body text-white">
+                {{form_start(form)}}
+                <div class="d-flex">
+                    <div class="mr-2">
+                        {{form_row(form.title)}}
+                    </div>
+                    <div class="mr-2">
+                        {{form_row(form.image)}}
+                    </div>
+                    <div class="mr-2">
+                        {{form_row(form.link)}}
+                    </div>
+                    <div>
+                        {{form_row(form.button)}}
+                    </div>
+                </div>
+                <div>
+                    {{form_row(form.content)}}
+                </div>
+                <button type="submit" class="btn btnAdmin btn-block">Enregistrer</button>
+                {{form_end(form)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    
+tinymce.init({
+    selector: '#actu_content',
+    height: 400,
+    toolbar_mode: 'floating',
+    language: 'fr_FR',
+    toolbar: 'forecolor backcolor undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+
+});
+    </script>
+<script>
+    $('.custom-file-input').on('change', function (event) {
+        var inputFile = event.currentTarget;
+        $(inputFile).parent()
+            .find('.custom-file-label')
+            .html(inputFile.files[0].name);
+    });
+</script>
+{% endblock %}

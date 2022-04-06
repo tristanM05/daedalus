@@ -1,0 +1,58 @@
+{% extends 'baseAdmin.html.twig' %}
+{% block title %}Daedalus - Album{% endblock %}
+{% block monTitre %}
+    {% if edit %}
+        Modifier l'album {{album.titre}}
+    {% else %}
+        Ajouter un nouvel Album
+    {% endif %}
+{% endblock %}
+{% block body %}
+{% if edit %}
+{% set pathx = 'modifAlbum' %}
+{% else %}
+{% set pathx = 'createAlbum' %}
+{% endif %}
+    <div class="container">
+        <h1 class="">Gestion des Albums</h1>
+        <div class="card">
+            <div class="card-body">
+                {{ form_start(form) }}
+                    {{ form_row(form.title) }}
+                    {{ form_row(form.description) }}
+                    {{ form_row(form.images) }}
+                    <button type="submit" class="btn btnAdmin btn-block">Enregistrer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+        <div class="row">
+            {% for a in album.photo %}
+                <div class="col-lg-4 mt-5">
+                    <div class="supImg">
+                        <img src="{{asset('album/' ~ a.name)}}" alt="" class="adminImg">
+                        <form method="POST" style="display:inline-block" action="{{path('article_delete_image', {id:a.id})}}"
+                        onsubmit="return confirm('Confirmer la suppression)">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ a.id)}}">
+                        <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                    </form>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    
+tinymce.init({
+    selector: '#album_description',
+    height: 350,
+    toolbar_mode: 'floating',
+    language: 'fr_FR',
+    toolbar: 'forecolor backcolor undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent',
+
+});
+    </script>
+{% endblock %}
+

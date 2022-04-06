@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello TarifController!{% endblock %}
+
+{% block body %}
+<div id="tarif">
+    <p class="titleTarif">Nos tarifs varient selon les moments et le nombre de joueurs, de 18 à 32 € par personne</p>
+    <p id="tarifP1">
+        Attention :  Il est nécessaire d’effectuer une réservation 24h à l’avance afin de pouvoir profiter de nos rooms ! <br> Pour toute réservation de dernière minute, veuillez nous appelez.
+    </p>
+    <div class="container tableTarif">
+        <div class="imgTarif">
+            <img src="images/tarif1.png" alt="">
+        </div>
+        <div class="imgTarif">
+            <img src="images/tarif2.png" alt="">
+        </div>
+    </div>
+</div>
+{% endblock %}
