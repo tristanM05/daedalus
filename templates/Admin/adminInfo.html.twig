@@ -1,0 +1,25 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Hello AdminPanelController!{% endblock %}
+
+{% block body %}
+        <div class="container">
+        <h1 class="">Information personnelle</h1>
+        <div class="card">
+            <div class="card-body text-white">
+                {{form_start(form_info)}}
+                {{form_row(form_info.mail)}}
+                <button type="submit" class="btn btnAdmin btn-block">Enregistrer</button>
+                {{form_end(form_info)}}
+            </div>
+        </div>
+        <div class="card mt-5">
+            <div class="card-body text-white">
+                {{form_start(form)}}
+                {{ form_widget(form) }}
+                <button type="submit" class="btn btnAdmin btn-block">Enregistrer</button>
+                {{form_end(form)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}

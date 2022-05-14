@@ -47,6 +47,16 @@ class Mobile
      */
     private $background;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $button;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $link;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +130,30 @@ class Mobile
     public function setBackground(?string $background): self
     {
         $this->background = $background;
+
+        return $this;
+    }
+
+    public function getButton(): ?string
+    {
+        return $this->button;
+    }
+
+    public function setButton(string $button): self
+    {
+        $this->button = $button;
+
+        return $this;
+    }
+
+    public function getLink(): ?string
+    {
+        return $this->link;
+    }
+
+    public function setLink(string $link): self
+    {
+        $this->link = $link;
 
         return $this;
     }

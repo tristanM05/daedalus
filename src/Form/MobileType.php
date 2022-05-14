@@ -58,6 +58,20 @@ class MobileType extends AbstractType
                     "placeholder" => "Image de fond"
                 ]
             ])
+            ->add('link', TextType::class, [
+                "label" => false,
+                "required" => false,
+                "attr" => [
+                    "placeholder" => "Lien de redirection"
+                ]
+            ])
+            ->add('button', TextType::class, [
+                "label" => false,
+                "required" => false,
+                "attr" => [
+                    "placeholder" => "Nom de boutton"
+                ]
+            ])
         ;
     }
 

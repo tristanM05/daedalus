@@ -12,11 +12,15 @@
         <div class="mobileBack" style="background-image: url(/room/{{m.background}})">
             <p class="mobileTitle">{{m.title}}</p>
             <p class="mobileNb">{{m.nbPlayer}}</p>
+            {% if m.link and m.button != null %}
+                <a href="{{m.link}}" class="btn btnGame">{{m.button}}</a>
+            {% endif %}
             <div>
                 <iframe class="videoGame" width="1060" height="515" src="{{m.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
             </div>
             <img src="/room/{{m.image}}" class="mobileImg" alt="">
         </div>
+
     {% endfor %}
 </div>
 {% endblock %}
