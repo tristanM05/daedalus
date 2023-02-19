@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\PasswordUpdate;
 use App\Form\AdminInfoType;
 use App\Form\PasswordUpdateType;
+use App\Repository\ChildGameRepository;
 use App\Repository\RoomsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -20,16 +21,18 @@ class SecurityAdminController extends AbstractController
     /**
      * @Route("/admin/log", name="admin_log")
      */
-    public function login(AuthenticationUtils $outils,RoomsRepository $repo_room): Response
+    public function login(AuthenticationUtils $outils,RoomsRepository $repo_room, ChildGameRepository $repo_child): Response
     {
         $rooms = $repo_room->findAll();
         $erreur = $outils->getLastAuthenticationError();
         $identifiant = $outils->getLastUsername();
+        $childs = $repo_child->findAll();
 
         return $this->render('Admin/securityAdmin.html.twig', [
             'erreur' => $erreur !== null,
             'identifiant' => $identifiant,
             'rooms' => $rooms,
+            'childs' => $childs
         ]);
     }
 

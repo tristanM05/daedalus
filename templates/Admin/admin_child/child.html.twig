@@ -1,0 +1,37 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion des jeux enfants{% endblock %}
+
+{% block body %}
+<div id="allRoom" class="container">
+    <h1>Gestion des jeux enfants</h1>
+    {% for message in app.flashes('success') %}
+    <div class="container alert alert-success text-center" id="alertInfo">
+        {{message}}
+    </div>
+    {% endfor %}
+    <a href="{{path('newChild')}}" class="btn btnAdmin my-4">Ajouter un jeux</a>
+    <div class="card p-3">
+        <table class="table table-hover text-center">
+            <thead class="tableAdmin text-white text-center">
+                <th>Nom</th>
+                <th>Action</th>
+            </thead>
+           {% for child in childs %}
+                <tbody class="text-white">    
+                    <td>{{child.title}}</td>
+                    <td>
+                        <a href="{{path('editChild', {id:child.id})}}" class="btn btnAdmin"><i class="fas fa-eye"></i></a>
+                        <form method="POST" style="display:inline-block" action="{{path('delRoom', {id:child.id})}}"
+                            onsubmit="return confirm('Confirmer la suppression)">
+                            <input type="hidden" name="_method" value="delete">
+                            <input type="hidden" name="_token" value="{{csrf_token('SUP' ~ child.id)}}">
+                            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+                        </form>
+                    </td>
+                </tbody>
+           {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

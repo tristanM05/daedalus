@@ -10,7 +10,9 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Contact;
 use App\Form\ContactType;
 use App\Repository\ActuRepository;
+use App\Repository\ChildGameRepository;
 use App\Repository\InfoRepository;
+use App\Repository\MobileRepository;
 use App\Repository\RoomsRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 
@@ -19,11 +21,13 @@ class HomeController extends AbstractController
     /**
      * @Route("/", name="home")
      */
-    public function index(Request $req, MailerInterface $mailer, InfoRepository $repo_info, RoomsRepository $repo_room, ActuRepository $repo_actu): Response
+    public function index(Request $req, MailerInterface $mailer, InfoRepository $repo_info, RoomsRepository $repo_room, ActuRepository $repo_actu, ChildGameRepository $repo_child, MobileRepository $mobiles_repo): Response
     {
         $actu = $repo_actu->findBy(["isSelect" => 1], ["createdAt" => "DESC"]);
         $rooms = $repo_room->findAll();
         $info = $repo_info->findAll();
+        $childs = $repo_child->findAll();
+        $mobiles = $mobiles_repo->findAll();
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
         $form->handleRequest($req);
@@ -34,8 +38,9 @@ class HomeController extends AbstractController
         $firstname = $contact->getFirstname();
         $society = $contact->getSociety();
         $phone = $contact->getPhone();
+        $secu = $contact->getSecu();
 
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid() && $secu == "4"){
             $message = (new TemplatedEmail())
                 ->from($mail)
                 ->to('daedalusescapegame@outlook.fr')
@@ -53,7 +58,9 @@ class HomeController extends AbstractController
             'form' => $form->createView(),
             'info' => $info,
             'rooms' => $rooms,
-            "actus" => $actu
+            "actus" => $actu,
+            'childs' => $childs,
+            'mobiles' => $mobiles
         ]);
     }
 }

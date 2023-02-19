@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Repository\ChildGameRepository;
+use App\Repository\MobileRepository;
 use App\Repository\RoomsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
@@ -12,11 +14,15 @@ class EntrepriseController extends AbstractController
     /**
      * @Route("/entreprise", name="entreprise")
      */
-    public function index(RoomsRepository $repo_room): Response
+    public function index(RoomsRepository $repo_room, ChildGameRepository $repo_child, MobileRepository $mobiles_repo): Response
     {
         $rooms = $repo_room->findAll();
+        $childs = $repo_child->findAll();
+        $mobiles = $mobiles_repo->findAll();
         return $this->render('pages/entreprise.html.twig', [
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'childs' => $childs,
+            'mobiles' => $mobiles
         ]);
     }
 }

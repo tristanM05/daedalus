@@ -53,6 +53,12 @@ class ContactType extends AbstractType
                     'rows' => 12
                 ]
             ])
+            ->add('secu', TextType::class, [
+                'label' => false,
+                'attr' => [
+                    'class' => 'secuInput',
+                ]
+            ])
         ;
     }
 

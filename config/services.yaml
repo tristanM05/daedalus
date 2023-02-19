@@ -7,6 +7,7 @@ parameters:
     images_directory: '%kernel.project_dir%/public/room'
     actu_directory: '%kernel.project_dir%/public/actu'
     album_directory: '%kernel.project_dir%/public/album'
+    partenaire_directory: '%kernel.project_dir%/public/partenaire'
 services:
     # default configuration for services in *this* file
     _defaults:

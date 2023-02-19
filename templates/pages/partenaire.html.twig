@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos partenaires{% endblock %}
+
+{% block body %}
+{% if count == 1 %}
+<div id="part" class="container">
+    <h1>Nos partenaires</h1>
+    <div>
+        {% for p in partenaire %}
+        <div class="thisPart">
+            <div class="entetePart">
+                <img class="logoPart" src="/partenaire/{{p.logo}}" alt="">
+                <p class="titlePart">{{p.name}}</p>
+            </div>
+            <p class="textPart">{{p.description|raw}}</p>
+            <p class="linkPart">Lien: <a href="{{p.link}}" target="blank">{{p.link}}</a></p>
+            {% if p.video != null and p.image != null %}
+            <div class="mediaPart">
+                <iframe src="{{p.video}}" class="videoPart" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                <a class="aImgPart" href="{{asset('partenaire/' ~ p.image)}}" data-lightbox="galerie"><img
+                        src="{{asset('partenaire/' ~ p.image)}}" alt="" class="imgPart2"></a>
+            </div>
+            {% elseif p.video != null and p.image == null %}
+            <iframe src="{{p.video}}" class="videoPart2" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            {% else %}
+            <div class="blocImgPart">
+                <a class="aImgPart" href="{{asset('partenaire/' ~ p.image)}}" data-lightbox="galerie"><img
+                        src="{{asset('partenaire/' ~ p.image)}}" alt="" class="imgPart"></a>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% elseif count > 1 %}
+<div id="part">
+    <h1>Nos partenaires</h1>
+    <div id="allPart">
+        {% for p in partenaire %}
+        <div class="thisPart">
+            <div class="entetePart">
+                <img class="logoPart" src="/partenaire/{{p.logo}}" alt="">
+                <p class="titlePart">{{p.name}}</p>
+            </div>
+            <p class="textPart">{{p.description|raw}}</p>
+            <p class="linkPart">Lien: <a href="{{p.link}}" target="blank">{{p.link}}</a></p>
+            {% if p.video != null and p.image != null %}
+            <div class="mediaPart">
+                <iframe src="{{p.video}}" class="videoPart" title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                <a class="aImgPart" href="{{asset('partenaire/' ~ p.image)}}" data-lightbox="galerie"><img
+                        src="{{asset('partenaire/' ~ p.image)}}" alt="" class="imgPart2"></a>
+            </div>
+            {% elseif p.video != null and p.image == null %}
+            <iframe src="{{p.video}}" class="videoPart2" title="YouTube video player" frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen></iframe>
+            {% else %}
+            <div class="blocImgPart">
+                <a class="aImgPart" href="{{asset('partenaire/' ~ p.image)}}" data-lightbox="galerie"><img
+                        src="{{asset('partenaire/' ~ p.image)}}" alt="" class="imgPart"></a>
+            </div>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endif %}
+{% endblock %}

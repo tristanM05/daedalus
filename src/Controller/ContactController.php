@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Contact;
 use App\Form\ContactType;
+use App\Repository\ChildGameRepository;
+use App\Repository\MobileRepository;
 use App\Repository\RoomsRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,9 +19,11 @@ class ContactController extends AbstractController
     /**
      * @Route("/contact", name="contact")
      */
-    public function index(RoomsRepository $repo_room, MailerInterface $mailer, Request $req): Response
+    public function index(RoomsRepository $repo_room, MailerInterface $mailer, Request $req, ChildGameRepository $repo_child, MobileRepository $mobiles_repo): Response
     {
         $rooms = $repo_room->findAll();
+        $childs = $repo_child->findAll();
+        $mobiles = $mobiles_repo->findAll();
 
         $contact = new Contact();
         $form = $this->createForm(ContactType::class, $contact);
@@ -31,8 +35,9 @@ class ContactController extends AbstractController
         $firstname = $contact->getFirstname();
         $society = $contact->getSociety();
         $phone = $contact->getPhone();
+        $secu = $contact->getSecu();
 
-        if($form->isSubmitted() && $form->isValid()){
+        if($form->isSubmitted() && $form->isValid() && $secu == "4"){
             $message = (new TemplatedEmail())
                 ->from($mail)
                 ->to('daedalusescapegame@outlook.fr')
@@ -50,6 +55,8 @@ class ContactController extends AbstractController
         return $this->render('pages/contact.html.twig', [
             'rooms' => $rooms,
             'form' => $form->createView(),
+            'childs' => $childs,
+            'mobiles' => $mobiles
         ]);
     }
 }

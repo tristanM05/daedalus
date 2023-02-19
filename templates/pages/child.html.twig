@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Daedalus - {{thisChild.title}}{% endblock %}
+
+{% block body %}
+    <div class="room" style="background-image: url(/room/{{thisChild.background}})">
+        <div class="container">
+            <div class="gridRoom">
+                <div class="mediaRoom">
+                    {% if thisChild.video != null %}   
+                        <div class="videoRoom">
+                            <iframe src="{{thisChild.video}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                    {% else %}
+                    {% endif %}
+                    {% if thisChild.image != null %}
+                        <div class="imageRoom">
+                            <img src="/room/{{thisChild.image}}" alt="">
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="txtRoom">
+                    <div>
+                        <h1>{{thisChild.title}}</h1>
+                        <div class="d-flex">
+                            <p class="text-white">Difficulté:</p>
+                            <img class="difficulty" src="/difficulty/{{thisChild.difficulty.name}}" alt="{{thisChild.difficulty.name}}">
+                        </div>
+                        <div>
+                            <p class="text-white">{{thisChild.nbPlayer}} - Durée: {{thisChild.duration}} minutes</p>
+                        </div>
+                        <p class="roomMessage text-white">{{thisChild.message|raw}}</p>
+                        <p class="roomContent">{{thisChild.content|raw}}</p>
+                        {% if thisChild.link and thisChild.button != null %}
+                            <a href="{{thisChild.link}}" class="btn btnGame">{{thisChild.button}}</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -50,6 +50,13 @@ class Contact{
      */
     private $message;
 
+      /**
+     * @var string|null
+     * @Assert\NotBlank()
+     * @Assert\Length(min=1, max=1)
+     */
+    private $secu;
+
     // /**
     //  * @var checkbox|null
     //  * 
@@ -197,6 +204,30 @@ class Contact{
     public function setMessage($message)
     {
         $this->message = $message;
+
+        return $this;
+    }
+
+        /**
+     * Get the value of email
+     *
+     * @return  string|null
+     */ 
+    public function getSecu()
+    {
+        return $this->secu;
+    }
+
+    /**
+     * Set the value of email
+     *
+     * @param  string|null  $email
+     *
+     * @return  self
+     */ 
+    public function setSecu($secu)
+    {
+        $this->secu = $secu;
 
         return $this;
     }

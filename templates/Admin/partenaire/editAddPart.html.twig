@@ -1,0 +1,62 @@
+{% extends 'baseAdmin.html.twig' %}
+
+{% block title %}Gestion des Partenaires{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="">Gestion des Partenaires</h1>
+        <div class="card">
+            <div class="card-body text-white">
+                {{form_start(form)}}
+                <div class="d-flex">
+                    <div class="mr-2">
+                        {{form_row(form.name)}}
+                    </div>
+                    <div class="mr-2">
+                        {{form_row(form.logo)}}
+                    </div>
+                    <div class="mr-2">
+                        {{form_row(form.image)}}
+                    </div>
+                </div>
+                <div class="d-flex">
+                    <div class="mr-2">
+                        {{form_row(form.link)}}
+                    </div>
+                    <div class="mr-2">
+                        {{form_row(form.ordre)}}
+                    </div>
+                    <div class="mr-2">
+                        {{form_row(form.video)}}
+                    </div>
+                </div>
+                <div>
+                    {{form_row(form.description)}}
+                </div>
+                <button type="submit" class="btn btnAdmin btn-block">Enregistrer</button>
+                {{form_end(form)}}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    <script>
+    
+tinymce.init({
+    selector: '#partenaire_description',
+    height: 400,
+    toolbar_mode: 'floating',
+    language: 'fr_FR',
+    toolbar: 'forecolor backcolor undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | outdent indent'
+
+});
+    </script>
+<script>
+    $('.custom-file-input').on('change', function (event) {
+        var inputFile = event.currentTarget;
+        $(inputFile).parent()
+            .find('.custom-file-label')
+            .html(inputFile.files[0].name);
+    });
+</script>
+{% endblock %}

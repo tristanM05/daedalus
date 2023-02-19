@@ -29,9 +29,15 @@ class Difficulty
      */
     private $rooms;
 
+    /**
+     * @ORM\OneToMany(targetEntity=ChildGame::class, mappedBy="difficulty")
+     */
+    private $childGames;
+
     public function __construct()
     {
         $this->rooms = new ArrayCollection();
+        $this->childGames = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Difficulty
             // set the owning side to null (unless already changed)
             if ($room->getDifficulty() === $this) {
                 $room->setDifficulty(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ChildGame[]
+     */
+    public function getChildGames(): Collection
+    {
+        return $this->childGames;
+    }
+
+    public function addChildGame(ChildGame $childGame): self
+    {
+        if (!$this->childGames->contains($childGame)) {
+            $this->childGames[] = $childGame;
+            $childGame->setDifficulty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChildGame(ChildGame $childGame): self
+    {
+        if ($this->childGames->removeElement($childGame)) {
+            // set the owning side to null (unless already changed)
+            if ($childGame->getDifficulty() === $this) {
+                $childGame->setDifficulty(null);
             }
         }
 

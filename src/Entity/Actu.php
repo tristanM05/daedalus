@@ -28,7 +28,7 @@ class Actu
     private $image;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\Column(type="text", nullable=true)
      */
     private $content;
 

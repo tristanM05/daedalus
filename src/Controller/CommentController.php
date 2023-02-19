@@ -5,7 +5,9 @@ namespace App\Controller;
 use App\Entity\Comment;
 use App\Form\CommentType;
 use App\Repository\ActuRepository;
+use App\Repository\ChildGameRepository;
 use App\Repository\CommentRepository;
+use App\Repository\MobileRepository;
 use App\Repository\RoomsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -21,11 +23,13 @@ class CommentController extends AbstractController
     /**
      * @Route("/comment", name="comment")
      */
-    public function index(CommentRepository $repo_comment, EntityManagerInterface $manager, Request $req, MailerInterface $mailer, RoomsRepository $repo_room): Response
+    public function index(CommentRepository $repo_comment, EntityManagerInterface $manager, Request $req, MailerInterface $mailer, RoomsRepository $repo_room, ChildGameRepository $repo_child, MobileRepository $mobiles_repo): Response
     {
         $rooms = $repo_room->findAll();
         $allComments = $repo_comment->findBy(["isOk" => 1], ["createdAt" => "DESC"]);
         $now = new DateTime('now');
+        $childs = $repo_child->findAll();
+        $mobiles = $mobiles_repo->findAll();
 
         $comment = new Comment();
         $form = $this->createForm(CommentType::class, $comment);
@@ -54,7 +58,9 @@ class CommentController extends AbstractController
         return $this->render('pages/comment.html.twig', [
             'form' => $form->createView(),
             "comments" => $allComments,
-            'rooms' => $rooms
+            'rooms' => $rooms,
+            'childs' => $childs,
+            'mobiles' => $mobiles,
         ]);
     }
 
