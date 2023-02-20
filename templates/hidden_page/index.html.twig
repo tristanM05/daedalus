@@ -1,0 +1,16 @@
+{% extends 'baseHidden.html.twig' %}
+
+{% block title %}{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="choiseBlock">
+        <p class="titleBlock">Cliquez sur le nombre de survivant restant</p>
+        <div class="block">
+            <div class="choise1"><a href="{{path('audio1')}}">0-4 survivants</a></div>
+            <div class="line">-</div>
+            <div class="choise2"><a href="{{path('audio2')}}">5-8 survivants</a></div>
+        </div>
+    </div>
+</div>
+{% endblock %}

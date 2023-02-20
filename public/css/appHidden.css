@@ -1,0 +1,105 @@
+body{
+    background-image: url(../images/daedalus_paralax-1024x490.jpg);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: avenir;
+    margin: 0;
+    padding: 0%;
+    width: 100%;
+}
+    /******************** HIDDEN PAGE ***************************/
+    .choiseBlock{
+        background-color: #471f3a9c;
+        margin-top: 20%;
+    }
+    .block{
+        display: flex;
+        justify-content: center;
+    }
+    .titleBlock{
+        font-size: 25px;
+        color: white;
+        padding-top: 20px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+    .line{
+        width: 1px;
+        height: 200px;
+        background-color: white;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .choise1{
+        font-size: 2em;
+        padding: 50px;
+        margin-top: 40px;
+        margin-right: 70px;
+        display: flex;
+        justify-content: center;
+    }
+    .choise2{
+        font-size: 2em;
+        padding: 50px;
+        margin-top: 40px;
+        margin-left: 70px;
+        display: flex;
+        justify-content: center;
+    }
+    .choise1 a{
+        color: white;
+        text-decoration: none;
+    }
+    .choise2 a{
+        color: white;
+        text-decoration: none;
+    }
+    .audio{
+        padding: 40px;
+    }
+    .imgAudio{
+        width: 50%;
+        height: 40%;
+        display: flex;
+        justify-content: center;
+        border-radius: 10px 10px 0 0 ;
+        margin-left: 27%;
+    }
+    .lecteur{
+        width: 500px;
+        margin-left: 22%;
+    }
+    /******************** HIDDEN PAGE ***************************/
+    @media(max-width: 900px){
+        .choiseBlock{
+            margin-top: 0;
+            margin-top: 200px;
+        }
+        .choise1{
+            margin-top: 0;
+            margin-right: 0;
+            font-size: 25px;
+            margin-top: 30px;
+        }
+        .choise2{
+            margin-top: 0;
+            margin-left: 0;
+            font-size: 25px;
+            margin-top: 30px;
+        }
+        .audio{
+            padding: 0;
+        }
+        .imgAudio{
+            width: 100%;
+            height: 100%;
+            margin-left: 0;
+            margin-top: 100px;
+        }
+        .lecteur{
+            width: 100%;
+            margin-left: 0;
+        }
+    }
